@@ -4,15 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>참가신청 목록</title>
+    <style>
+        #container{
+            width:500px;
+            margin: 20px auto;
+        }
+        h1{
+            font-size: 2.5em;
+            text-align: center;
+        }
+        form{
+            margin-top: 50px;
+
+        }
+        input[type="text"]{
+            float: left;
+            width:300px;
+            padding:12px;
+            border:none;
+            border-bottom: 1px solid #ccc;
+            font-size: 20px;
+        }
+        input:focus{
+            outline: none;
+        }
+        button{
+            width:100px;
+            border:1px solid #ccc;
+            border-radius: 7px;
+            padding: 12px;
+            margin-left: 30px;
+            font-size: 20px;
+        }
+        button:hover{
+            background-color: #ccc;
+        }
+        hr{
+            clear: both;
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body>
     <div id="container">
         <h1>참가신청</h1>
         <form action="">
-        <input type="text" id="userName" placeholder="이름" required></form>
+        <input type="text" id="userName" placeholder="이름" required autocomplete="off">
+        <!-- 1.버튼에 이벤트 함수 지정하기 -->
+    <button onclick="newRegister(); return false;">신청</button>
+</form>
+    <hr>
+    <div id="nameList">
+        <p>홍길동 <span class="del"> x </span></p>
+        <p>백두산 <span class="del"> x </span></p>
+        <p>도레미 <span class="del"> x </span></p>
+    </div>
     </div>
     <script>
-       
+     // 2.이벤트 함수 정의하기
+     function newRegister(){
+        // 새로운 <p>태그 생성
+       var newP = document.createElement("p");
+       var userName = document.querySelector("#userName");
+       // 새 텍스트 노드 만들기
+       var newText = document.createTextNode(userName.value);
+       //텍스트 노드를 p태그요소에 자식요소를 연결합니다.
+       newP.appendChild(newText);
+    //    console.log(newP);
+       var nameList = document.querySelector("#nameList");
+       nameList.appendChild(newP);
+    //    console.log(nameList);
+        userName.value = ""
+     }
     </script>
 </body>
 </html>
