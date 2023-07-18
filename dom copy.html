@@ -70,11 +70,38 @@
        var newText = document.createTextNode(userName.value);
        //텍스트 노드를 p태그요소에 자식요소를 연결합니다.
        newP.appendChild(newText);
+       //삭제할 요소 만들기
+       //span요소를 생성
+       var delBtn = document.createElement("span");
+    //    console.log(delBtn);
+    // 새로운 텍스트 노드를 생성하기
+       var delText = document.createTextNode("x");
+        //var attr = document.createAttribute("class");
+        //attr.value = "del";
+       delBtn.setAttribute("class" , "del");
+       delBtn.appendChild(delText);
+       newP.appendChild(delBtn);
+       console.log(delBtn);
+
+
+
+
     //    console.log(newP);
        var nameList = document.querySelector("#nameList");
-       nameList.appendChild(newP);
+    //    nameList.appendChild(newP);
+          nameList.insertBefore(newP,nameList.childNodes[0]) 
+          //insertBefore 하면 젤 먼저 적었던게 내려가고 나중에 적은게 위로 올라옴.
     //    console.log(nameList);
         userName.value = ""
+        var removeBtns = document.querySelectorAll(".del");
+        for(var i = 0 ; i < removeBtns.length ; i++){
+            removeBtns[i].addEventListener("click" , function(){
+                if(this.parentNode.parentNode){
+                    this.parentNode.parentNode.removeChild(this.parentNode)
+                }
+            })
+    
+        }
      }
     </script>
 </body>
